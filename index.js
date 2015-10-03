@@ -1,19 +1,24 @@
 const cp = require('child_process')
 const once = require('once')
 const bl = require('bl')
+const semver = require('semver')
 
 function electronVersion (cb) {
   cb = once(cb)
-  var child = cp.spawn('electron', [ '--version' ])
-  child.on('error', cb)
-  child.on('exit', function (code) {
+  var c = cp.spawn('electron', [ '--version' ])
+  c.on('error', cb)
+  c.on('exit', function (code) {
     if (code !== 0) return cb(new Error('no electron installed'))
   })
-  child.stdout.pipe(bl(function (err, data) {
+  c.stdout.pipe(bl(function (err, data) {
     if (err) return cb(err)
-    cb(null, data.toString().trim())
+    var version = data.toString().trim()
+    if (semver.valid(version)) {
+      return cb(null, version)
+    }
+    cb(new Error('invalid version: ' + version))
   }))
-  return child
+  return c
 }
 
 module.exports = electronVersion
