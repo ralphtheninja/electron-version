@@ -20,10 +20,8 @@ test('returns error if no electron is installed', function (t) {
 })
 
 test('returns error if invalid semver', function (t) {
-  mockSpawn(function (stream) {
-    process.nextTick(function () {
-      stream.end('garbage')
-    })
+  mockSpawn(function (s) {
+    process.nextTick(s.end.bind(s, 'garbage'))
   })
   electronVersion(function (err, v) {
     t.equal(err.message, 'invalid version: garbage')
@@ -32,10 +30,8 @@ test('returns error if invalid semver', function (t) {
 })
 
 test('returns version if correct semver', function (t) {
-  mockSpawn(function (stream) {
-    process.nextTick(function () {
-      stream.end('v0.33.1')
-    })
+  mockSpawn(function (s) {
+    process.nextTick(s.end.bind(s, 'v0.33.1'))
   })
   electronVersion(function (err, v) {
     t.error(err)
@@ -45,12 +41,11 @@ test('returns version if correct semver', function (t) {
 })
 
 function mockSpawn (pipeFn) {
-  pipeFn = pipeFn || function () {}
   var spawn = cp.spawn
   cp.spawn = function () {
     cp.spawn = spawn
     var ee = new EE()
-    ee.stdout = { pipe: pipeFn }
+    ee.stdout = { pipe: pipeFn || function () {} }
     return ee
   }
 }
