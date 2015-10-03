@@ -1,6 +1,6 @@
 {
   "name": "electron-version",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "utility function for getting electron version string",
   "main": "index.js",
   "dependencies": {
