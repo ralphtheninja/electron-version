@@ -1,6 +1,7 @@
 # electron-version
 
 [![Build Status](https://travis-ci.org/ralphtheninja/electron-version.svg?branch=master)](https://travis-ci.org/ralphtheninja/electron-version)
+[![dependencies](https://david-dm.org/ralphtheninja/electron-version.svg)](https://david-dm.org/ralphtheninja/electron-version)
 
 ## Install
 
