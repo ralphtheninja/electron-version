@@ -1,4 +1,5 @@
 const test = require('tape')
+const path = require('path')
 const electronVersion = require('../')
 const cp = require('child_process')
 const EE = require('events').EventEmitter
@@ -36,6 +37,17 @@ test('returns version if correct semver', function (t) {
   electronVersion(function (err, v) {
     t.error(err)
     t.equal(v, 'v0.33.1', 'correct version')
+    t.end()
+  })
+})
+
+test('accepts a custom electron path', function (t) {
+  mockSpawn(function (s) {
+    process.nextTick(s.end.bind(s, 'v1.6.3'))
+  })
+  electronVersion(path.join(__dirname, 'node_modules/.bin/electron'), function (err, v) {
+    t.error(err)
+    t.equal(v, 'v1.6.3', 'correct version')
     t.end()
   })
 })
