@@ -20,5 +20,17 @@ electronVersion(function (err, v) {
 })
 ```
 
+You can optionally specify a custom path to the `electron` binary.
+
+```js
+const path = require('path')
+const electronVersion = require('electron-version')
+const electronPath = path.join(__dirname, 'node_modules/.bin/electron')
+
+electronVersion(electronPath, function (err, v) {
+  console.log(err, v) // null 'v1.6.3'
+})
+```
+
 ## License
 All code, unless stated otherwise, is licensed under the [`WTFPL`](http://www.wtfpl.net/txt/copying/) license.

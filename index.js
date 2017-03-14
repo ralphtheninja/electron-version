@@ -3,9 +3,14 @@ const once = require('once')
 const bl = require('bl')
 const semver = require('semver')
 
-function electronVersion (cb) {
+function electronVersion (electronPath, cb) {
+  if (!cb) {
+    cb = electronPath
+    electronPath = 'electron'
+  }
+
   cb = once(cb)
-  var c = cp.spawn('electron', [ '--version' ])
+  var c = cp.spawn(electronPath, [ '--version' ])
   c.on('error', cb)
   c.on('exit', function (code) {
     if (code !== 0) return cb(new Error('no electron installed'))
