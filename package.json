@@ -1,6 +1,6 @@
 {
   "name": "electron-version",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Find the installed electron version",
   "main": "index.js",
   "dependencies": {
