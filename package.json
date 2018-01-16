@@ -6,7 +6,7 @@
   "dependencies": {
     "bl": "^1.0.0",
     "once": "^1.3.2",
-    "semver": "^5.0.3"
+    "semver": "^5.5.0"
   },
   "devDependencies": {
     "standard": "^10.0.3",
