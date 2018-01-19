@@ -26,5 +26,8 @@
     "version",
     "devops"
   ],
-  "license": "WTFPL"
+  "license": "WTFPL",
+  "engines": {
+    "node": ">=6.0.0"
+  }
 }
