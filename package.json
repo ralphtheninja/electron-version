@@ -4,7 +4,7 @@
   "description": "Find the installed electron version",
   "main": "index.js",
   "dependencies": {
-    "bl": "^2.0.0",
+    "bl": "^4.0.1",
     "once": "^1.3.2",
     "semver": "^5.0.3"
   },
